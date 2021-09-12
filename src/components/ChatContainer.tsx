@@ -68,7 +68,7 @@ const ChatContainer: FC<IChatContainerProps> = ({ currentUser, currentChannel })
             setLastMessage(messages[messages.length - 1].messageId);
         }
         scrollToBottom();
-    }, [messages]);
+    }, [messages, messageContainerRef]);
 
     //Order messages
     const orderMessages = (unorderedMessages: IMessage[]) => {
@@ -87,7 +87,6 @@ const ChatContainer: FC<IChatContainerProps> = ({ currentUser, currentChannel })
 
     //Get messages and more messages if the button is clicked
     useEffect(() => {
-        scrollToBottom();
         if (data !== undefined) {
             if (data.fetchLatestMessages) {
                 setMessages(orderMessages(data.fetchLatestMessages));
@@ -142,7 +141,8 @@ const ChatContainer: FC<IChatContainerProps> = ({ currentUser, currentChannel })
                 </div>
             </div>
             <SendMessage currentChannel={currentChannel} currentUser={currentUser} messages={messages} setMessages={setMessages} />
-        </div>);
+        </div>
+    );
 };
 
 export default ChatContainer;

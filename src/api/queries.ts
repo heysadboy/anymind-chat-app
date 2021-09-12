@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+//GraphQL queries to get the data
 export const FETCH_MORE_MESSAGES = gql`
     query FetchMoreMessages($channelId: String!, $messageId: String!, $old: Boolean!) {
         fetchMoreMessages(

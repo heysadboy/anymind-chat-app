@@ -6,6 +6,7 @@ import channelsData from "../data/channels.json";
 import "../css/App.css";
 import { IChannel, IUser } from "../utils/interfaces";
 
+//Main component that holds chat container and sidebar
 const App = () => {
     const [currentUser, setCurrentUser] = useState<IUser>(usersData[0]);
     const [currentChannel, setCurrentChannel] = useState<IChannel>(channelsData[0]);

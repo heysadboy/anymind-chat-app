@@ -9,6 +9,7 @@ interface IChannelListProps {
     channelsData: IChannel[]
 }
 
+//List of channels to put in the sidebar
 const ChannelList: FC<IChannelListProps> = ({ currentChannel, setCurrentChannel, channelsData }) => {
     const channelList = channelData.map((channel) => {
         if (currentChannel.name === channel.name) {

@@ -56,18 +56,18 @@ const ChatContainer: FC<IChatContainerProps> = ({ currentUser, currentChannel })
     }
 
     //Scroll to the bottom of the chat container
+    const scrollToBottom = () => {
+        if (messageContainerRef.current != null) {
+            messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+        }
+    }
+
     useEffect(() => {
         if (messages.length > 0) {
             setFirstMessage(messages[0].messageId);
             setLastMessage(messages[messages.length - 1].messageId);
         }
-
-        if (messageContainerRef.current != null) {
-            const scrollHeight = messageContainerRef.current.scrollHeight;
-            const height = messageContainerRef.current.clientHeight;
-            const maxScrollTop = scrollHeight - height;
-            messageContainerRef.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
-        }
+        scrollToBottom();
     }, [messages]);
 
     //Order messages
@@ -87,6 +87,7 @@ const ChatContainer: FC<IChatContainerProps> = ({ currentUser, currentChannel })
 
     //Get messages and more messages if the button is clicked
     useEffect(() => {
+        scrollToBottom();
         if (data !== undefined) {
             if (data.fetchLatestMessages) {
                 setMessages(orderMessages(data.fetchLatestMessages));

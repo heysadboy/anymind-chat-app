@@ -20,13 +20,12 @@ const ChatContainer: FC<IChatContainerProps> = ({ currentUser, currentChannel })
     const [query, setQuery] = useState(FETCH_LATEST_MESSAGES);
     const [variables, setVariables] = useState({ channelId: currentChannel.id });
     const [messages, setMessages] = useState<IMessage[]>([]);
+    const [postError, setPostError] = useState(false);
 
 
     const { loading, error, data } = useQuery(query, {
         variables: variables
     });
-
-
 
     const getMoreMessages = (isOld: boolean, messageId: string) => {
         const newVariables = {
@@ -78,7 +77,9 @@ const ChatContainer: FC<IChatContainerProps> = ({ currentUser, currentChannel })
                     <div className="ui right labeled basic icon button" onClick={() => getMoreMessages(true, firstMessageId)}>
                         <i className="icon arrow up"></i> Read More
                     </div>
-                    {messagesList}
+                    <div id="message-container">
+                        {messagesList}
+                    </div>
                     <div className="ui right labeled basic icon button" onClick={() => getMoreMessages(false, lastMessageId)}>
                         <i className="icon arrow down"></i> Read More
                     </div>
@@ -88,12 +89,12 @@ const ChatContainer: FC<IChatContainerProps> = ({ currentUser, currentChannel })
     }
 
     return (
-        <div className="">
-            <div id="chat-container">
+        <div>
+            <div id="chat-container" >
                 <h3 className="ui header">{currentChannel.name}</h3>
                 {getChat()}
             </div>
-            <SendMessage currentChannel={currentChannel} currentUser={currentUser} />
+            <SendMessage currentChannel={currentChannel} currentUser={currentUser} messages={messages} setMessages={setMessages} setPostError={setPostError} />
         </div>);
 };
 

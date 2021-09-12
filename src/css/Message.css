@@ -1,0 +1,135 @@
+/*For left container */
+
+#user-image-container-left {
+    text-align: center;
+    margin: 0px;
+}
+
+#user-image-left {
+    width: 40px !important;
+}
+
+#user-name-left {
+    color: grey;
+    font-size: smaller;
+}
+
+#message-container-left {
+    margin: 10px 20% 10px 0px;
+}
+
+#message-content-container-left {
+    padding: 0px 0px 0px 0px;
+    border: 1px grey;
+}
+
+#message-content-left {
+    height: auto;
+    width: 100%;
+    font-weight: normal;
+}
+
+#message-details-left {
+    width: auto;
+    display: flex;
+    color: grey;
+    font-size: smaller;
+    margin: 0px 0px 0px 15px;
+}
+
+/*For right container */
+
+#user-image-container-right {
+    text-align: center;
+    margin: 0px;
+}
+
+#user-image-right {
+    width: 40px !important;
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+#user-name-right {
+    color: grey;
+    font-size: smaller;
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+#message-container-right {
+    margin: 10px 0px 10px 20%;
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+#message-content-container-right {
+    padding: 0px 0px 0px 0px;
+    border: 1px grey;
+}
+
+#message-content-right {
+    height: auto;
+    width: 100%;
+    margin: 0px 0px 0px 10px;
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+    text-align: right;
+    font-weight: normal;
+}
+
+#message-details-right {
+    width: auto;
+    display: flex;
+    color: grey;
+    font-size: smaller;
+    margin: 0px 0px 0px 15px;
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+@media (max-width: 480px) {
+    #user-image-container-left {
+        display: flex;
+    }
+    #user-name-left {
+        margin: auto 5px auto 5px;
+    }
+    #user-image-left {
+        width: 30px !important;
+        text-align: center;
+        margin: 0px;
+    }
+    #message-container-left {
+        margin: 10px 0px 10px 0px;
+    }
+    #message-content-container-left {
+        padding: 0px 0px 0px 0px;
+    }
+    #user-image-container-right {
+        display: flex;
+    }
+    #user-name-right {
+        margin: auto 5px auto 5px;
+    }
+    #user-image-right {
+        width: 30px !important;
+        text-align: center;
+        margin: 0px;
+    }
+}

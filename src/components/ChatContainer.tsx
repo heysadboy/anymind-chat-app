@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import Message from "./Message";
 import "../css/ChatContainer.css";
@@ -20,8 +20,7 @@ const ChatContainer: FC<IChatContainerProps> = ({ currentUser, currentChannel })
     const [query, setQuery] = useState(FETCH_LATEST_MESSAGES);
     const [variables, setVariables] = useState({ channelId: currentChannel.id });
     const [messages, setMessages] = useState<IMessage[]>([]);
-    const [postError, setPostError] = useState(false);
-
+    const messageContainerRef = useRef<HTMLDivElement>(null);
 
     const { loading, error, data } = useQuery(query, {
         variables: variables
@@ -37,7 +36,14 @@ const ChatContainer: FC<IChatContainerProps> = ({ currentUser, currentChannel })
         setQuery(FETCH_MORE_MESSAGES);
     }
 
-
+    useEffect(() => {
+        if (messageContainerRef.current != null) {
+            const scrollHeight = messageContainerRef.current.scrollHeight;
+            const height = messageContainerRef.current.clientHeight;
+            const maxScrollTop = scrollHeight - height;
+            messageContainerRef.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+        }
+    }, [messages]);
 
     useEffect(() => {
         if (data !== undefined) {
@@ -54,6 +60,8 @@ const ChatContainer: FC<IChatContainerProps> = ({ currentUser, currentChannel })
         setVariables({ channelId: currentChannel.id });
         setQuery(FETCH_LATEST_MESSAGES);
     }, [currentUser, currentChannel]);
+
+
 
     const getChat = () => {
         if (loading) {
@@ -77,7 +85,7 @@ const ChatContainer: FC<IChatContainerProps> = ({ currentUser, currentChannel })
                     <div className="ui right labeled basic icon button" onClick={() => getMoreMessages(true, firstMessageId)}>
                         <i className="icon arrow up"></i> Read More
                     </div>
-                    <div id="message-container">
+                    <div ref={messageContainerRef} id="message-container">
                         {messagesList}
                     </div>
                     <div className="ui right labeled basic icon button" onClick={() => getMoreMessages(false, lastMessageId)}>
@@ -94,7 +102,7 @@ const ChatContainer: FC<IChatContainerProps> = ({ currentUser, currentChannel })
                 <h3 className="ui header">{currentChannel.name}</h3>
                 {getChat()}
             </div>
-            <SendMessage currentChannel={currentChannel} currentUser={currentUser} messages={messages} setMessages={setMessages} setPostError={setPostError} />
+            <SendMessage currentChannel={currentChannel} currentUser={currentUser} messages={messages} setMessages={setMessages} />
         </div>);
 };
 

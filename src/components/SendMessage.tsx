@@ -9,11 +9,10 @@ interface ISendMessageProps {
     currentUser: IUser,
     messages: IMessage[],
     setMessages: (messages: IMessage[]) => void,
-    setPostError: (error: boolean) => void
 }
 
-const SendMessage: FC<ISendMessageProps> = ({ currentChannel, currentUser, messages, setMessages, setPostError }) => {
-    const [sendMessage, { error, data }] = useMutation(SEND_MESSAGE);
+const SendMessage: FC<ISendMessageProps> = ({ currentChannel, currentUser, messages, setMessages }) => {
+    const [sendMessage] = useMutation(SEND_MESSAGE);
     const submitMessage = (e: any) => {
         e.preventDefault();
         const variables = {
@@ -21,20 +20,36 @@ const SendMessage: FC<ISendMessageProps> = ({ currentChannel, currentUser, messa
             text: e.target.message.value,
             userId: currentUser.name
         }
-        sendMessage({ variables: variables });
-        console.log(error);
 
+        sendMessage({ variables: variables })
+            .then(response => {
+                const newMessage: IMessage = response.data.postMessage;
+                setMessages([...messages, newMessage])
+                e.target.message.value = "";
+            }).catch(error => {
+                const datetime = new Date().toString();
+                const newMessage: IMessage = {
+                    messageId: `error${datetime}`,
+                    userId: currentUser.name,
+                    datetime: datetime,
+                    text: e.target.message.value
+                }
+
+                setMessages([...messages, newMessage]);
+            });
     }
+
     return (
         <form className="ui reply form" onSubmit={submitMessage}>
             <div className="field">
-                <textarea id="textarea" placeholder="Type your message here..." name="message"/>
+                <textarea id="textarea" placeholder="Type your message here..." name="message" />
             </div>
             <button type="submit" className="ui right labeled blue icon button">
                 <i className="icon paper plane"></i> Send Message
             </button>
         </form>
     );
+
 };
 
 export default SendMessage;

@@ -20,14 +20,13 @@
 
 #message-content-container-left {
     padding: 0px 0px 0px 0px;
-    border: 1px grey;
 }
 
 #message-content-left {
     overflow-wrap: break-word;
     height: auto;
-    width: auto;
-    inline-size: 200px;
+    width: 100%;
+    inline-size: 100%;
     font-weight: normal;
 }
 
@@ -76,14 +75,13 @@
 
 #message-content-container-right {
     padding: 0px 0px 0px 0px;
-    border: 1px grey;
 }
 
 #message-content-right {
     overflow-wrap: break-word;
     height: auto;
-    width: auto;
-    inline-size: 200px;
+    width: 100%;
+    inline-size: 100%;
     margin: 0px 0px 0px 10px;
     -webkit-transform: scaleX(-1);
     -moz-transform: scaleX(-1);
@@ -119,18 +117,17 @@
         text-align: center;
         margin: 0px;
     }
-    #message-container-left {
-        margin: 10px 0px 10px 0px;
-        
-    }
-    #message-content-container-left {
-        padding: 0px 0px 0px 0px;
+    #user-image-container-left {
+        display: flex;
+        padding: 0px 0px 5px 0px;
     }
     #message-content-left {
-        inline-size: 150px;
+        width: auto;
+        inline-size: 100%;
     }
     #user-image-container-right {
         display: flex;
+        padding: 0px 0px 5px 0px;
     }
     #user-name-right {
         margin: auto 5px auto 5px;
@@ -141,6 +138,7 @@
         margin: 0px;
     }
     #message-content-right {
-        inline-size: 150px;
+        width: auto;
+    inline-size: 100%;
     }
 }

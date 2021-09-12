@@ -43,7 +43,11 @@ const Message: FC<IMessageProps> = ({ messageType, messageDetail }) => {
                     <div id="message-content-container-right" className="content">
                         <div id="message-content-right" className="ui right pointing basic label">{messageDetail.text}</div>
                     </div>
-                    <div id="message-details-right">{messageTime}<i className="green check icon"></i></div>
+                    {
+                        messageDetail.messageId.startsWith("error") ?
+                            <div id="message-details-right">{messageTime}<i className="red exclamation icon"></i></div> :
+                            <div id="message-details-right">{messageTime}<i className="green check icon"></i></div>
+                    }
                 </div>
             </div>
         );

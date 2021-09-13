@@ -9,7 +9,7 @@ This app is made using ReactJS. I have also used Semantic UI for component styli
 - Separate Components are in the `components` folder
 - Some data for channel list and users is stored in `data` folder and images in images folder.
 - Custom CSS is store in `css` folder. CSS was getting big so I stored here.
-- Interfaces and enums are store in `utils`.
+- Interfaces and enums are stored in `utils`.
 
 I have improved UI a bit.
 

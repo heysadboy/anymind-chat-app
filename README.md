@@ -1,15 +1,15 @@
 # 1 Day Chat App
 
 You can find deployed version here https://heuristic-turing-2755b5.netlify.app/ 
-This app is made using ReactJS. I have also used Semantic UI for component styling ans Apollo client for GraphQL.
+This app is made using ReactJS. I have also used Semantic UI for component styling and Apollo client for GraphQL.
 
 ## Project Structure
 
-- All the API related queries and muations is api folder.
-- Separate Components are in components folder
-- Some data for channel list and users is stored in data folder and images in images folder.
-- Custom css is store in CSS folder.
-- Interfaces and enums are store in utils.
+- All the API related queries and mutations is in `api` folder.
+- Separate Components are in the `components` folder
+- Some data for channel list and users is stored in `data` folder and images in images folder.
+- Custom CSS is store in `css` folder. CSS was getting big so I stored here.
+- Interfaces and enums are store in `utils`.
 
 I have improved UI a bit.
 
